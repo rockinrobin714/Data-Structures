@@ -1,5 +1,5 @@
 //This uses psuedoclassical instantiation
-function LinkList() {
+function LinkedList() {
 	this.head = null;
 }
 
@@ -24,10 +24,32 @@ LinkedList.prototype.add = function(value){
 		}
 		current.next = node;
 	}
-	return node;
 }
 
-LinkedList.protoype.remove = function(node){
-	var current = node.value;
+//This method takes one value and searches for it in the list.
+//If that value is found, it removes it
+//This function also must go back one node and change it's "next" property 
+LinkedList.prototype.remove = function(node){
+	var current;
 	var value = node.value;
+//Checking to make sure the list isn't empty
+	if(this.head !==null){
+		//Special case scenario for if the head (first value) is the one we're looking for
+		if(this.head === node){
+			//Assign the head to be the second value (first node's "next")
+			this.head = this.head=next;
+			//Since it's the first, there is no "next"
+			node.next = null;
+			return value;
+		}
+		current = this.head;
+		//Cycle through the list until there is no "next"
+		while(current.next){
+			if(current.next===node){
+				current.next=node.next;
+				return value;
+			}
+			current = current.next;
+		}
+	}
 }
