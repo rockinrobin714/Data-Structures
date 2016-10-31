@@ -1,2 +1,2 @@
 # Data-Structures
-Writing up data structures in JavaScript
+This is a linked list implemented in JavaScript
