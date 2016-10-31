@@ -1,0 +1,33 @@
+//This uses psuedoclassical instantiation
+function LinkList() {
+	this.head = null;
+}
+
+//By using .prototype, I can add the methods to the LinkedList
+//This method creates a node. Each node has two key value pairs
+//Value tells the value, while next is a reference to the next node
+LinkedList.prototype.add = function(value){
+	var node = {
+		value: value,
+		next: null
+	};
+	var current;
+//Check to see if a head exists. If not, point the head to the first node.
+	if (this.head === null){
+		this.head = node;
+		//If we already have a head, point current to that node
+	} else {
+		current = this.head;
+		//By using a while loop here, we can check how long the linked list is
+		while(current.next) {
+			current = current.next;
+		}
+		current.next = node;
+	}
+	return node;
+}
+
+LinkedList.protoype.remove = function(node){
+	var current = node.value;
+	var value = node.value;
+}
