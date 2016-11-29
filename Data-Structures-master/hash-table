@@ -1,0 +1,52 @@
+var makeHashTable = function() {
+  var max = 4;
+
+  return {
+    _storage: [],
+    retrieve: function(key) {
+     var index = hashFn(key,max);
+     var bucket = this._storage[index];
+     for (var i=0;i<bucket.length;i++){
+       if (bucket[i][0]===key){
+         return bucket[i][1];
+       }
+     }
+    },
+    delete: function(key) {
+      var index = hashFn(key,max);
+      var bucket = this._storage[index];
+      for (var i=0;i<bucket.length;i++){
+        if (bucket[i][0]===key){
+        bucket.splice(i,1);
+        }
+      }
+    },
+    insert: function(key, value) {
+      var index = hashFn(key,max);
+      if(!this._storage[index]){
+        this._storage[index] = [];
+      }
+      var bucket = this._storage[index];
+      var found = false;
+      for (var i=0;i<bucket.length;i++){
+        if (bucket[i][0]===key){
+          bucket[i][1]=value;
+          found=true;
+        }
+    } if (!found){
+      bucket.push([key,value]);
+    }
+  }
+}
+};
+
+
+var hashFn = function(str, max) {
+  var hash = 0;
+  for (var i = 0; i < str.length; i++) {
+    var letter = str[i];
+    hash = (hash << 5) + letter.charCodeAt(0);
+    hash = (hash & hash) % max;
+  }
+  return hash;
+};
