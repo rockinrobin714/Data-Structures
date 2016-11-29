@@ -1,13 +1,23 @@
+//This is a function that creates a hash table
 var makeHashTable = function() {
+//I set the max to 4, but it could be set to whatever.
   var max = 4;
 
   return {
+  
+  //_storage is where I store all the buckets
+  
     _storage: [],
+    
     retrieve: function(key) {
+    
+    //Use the hash function to get the index of the bucket
      var index = hashFn(key,max);
      var bucket = this._storage[index];
+     //Once you get the bucket, loop through the arrays inside the bucket
      for (var i=0;i<bucket.length;i++){
        if (bucket[i][0]===key){
+       //Return the value associated with the key
          return bucket[i][1];
        }
      }
